@@ -1,0 +1,49 @@
+body {
+    background-image: url("../images/green-wall-paint-textured-background.jpg");
+    width: 100%;
+    height: 100vh;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+}
+
+
+.form {
+    background-image: url(../images/rb_99841.png);
+    /* width: 50%; */
+    /* height: 50vh; */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 400px;
+    height: 540px;
+    display: flex;
+    flex-direction: column;
+    border-radius: 15px;
+    background-color: white;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    transition: .4s ease-in-out;
+  }
+
+  input{
+    padding: 10px;
+    border-radius: 15px 15px 15px 15px;
+    background-color: rgba(255, 255, 255, 0.792);
+    text-align: center;
+    width: 300px;
+    border: 2px solid rgb(7, 7, 7);
+    color: #000000;
+    font-weight: bold;
+  
+  }
+  .hov{
+    text-decoration: none;
+    color: green;
+  }
+
+  .hov:hover{
+    color: red;
+    border-bottom: 1px solid red;
+    transition: 1s;
+  }

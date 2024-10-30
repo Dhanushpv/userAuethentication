@@ -64,21 +64,33 @@ async function otpverification(event) {
     event.preventDefault(); 
     console.log("Reached at OTP verification...");
 
-    let otp = document.getElementById('otp').value;
+    let email = document.getElementById('email').value;
+    
+    // Collect all OTP inputs
+    let otpElements = document.querySelectorAll('.input');
+    let otp = Array.from(otpElements).map(input => input.value).join('');
+
+    let data = {
+        email,
+        otp
+    }
+
+    let strdata = JSON.stringify(data);
+    console.log("strdata: ", strdata);
 
     try {
         let response = await fetch('/verifyOtp', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },  
-            body: JSON.stringify({ otp })
+            body: strdata
         });
 
         let responseData = await response.json();
         console.log("Response:", responseData);
 
-        if (response.status===200) {
+        if (response.status === 200) {
             alert("User has been added successfully");
-            window.location.href='userLogin.html'
+            window.location.href = 'userLogin.html';
         } else {
             alert("Something went wrong. Could not add user.");
         }
@@ -116,8 +128,24 @@ async function userLogin(event){
     let parsed_Response = await response.json();
     console.log('parsed_Response : ',parsed_Response);
 
+    let token_data = parsed_Response.data
+    console.log("token_data : ",token_data);
+
+    
+
+    let token = token_data.token;
+
+    let id =token_data.id;
+    console.log("id",id)
+
+    let token_key = id;
+    
+    
+    localStorage.setItem(token_key, token);
+    console.log("token_key",token_key)
+
     if(response.status ===200){
-        alert('')
+        alert('logined succssfully')
         
         window.location =`admin.html?login=${token_key}`
     }

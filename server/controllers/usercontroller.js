@@ -14,9 +14,10 @@ const crypto = require('crypto');
     
 
 function generateOTP() {
-  return Math.floor(100000 + Math.random() * 900000).toString(); // Generates a 6-digit OTP
+  return Math.floor(1000 + Math.random() * 9000).toString();
+ // Generates a 6-digit OTP
 }
-let otpStore = {};
+// let otpStore = {};
 exports.create1 = async function (req, res) {
   try {
     let body = req.body;
@@ -37,25 +38,33 @@ exports.create1 = async function (req, res) {
     let salt = bcrypt.genSaltSync(10);
     let hashedPassword = bcrypt.hashSync(password, salt);
 
-    otpStore[otp] = {
+    const expirationTime = Date.now() + 1 * 60 * 1000; // 5 minutes expiration
+
+    // Save OTP and other details to the database
+    const otpData = new users({
       email,
+      otp,
+      expirationTime,
       name,
       phoneno,
       password: hashedPassword,
-      image: body.image, 
-      expirationTime: Date.now() + 5 * 60 * 1000
-    };
+      image
+    });
 
-    // let content =  await sendOtpEmail(email,name,otp)
-    // await sendemail(email,"otp Verification",content);
+
+    let newUser = await users.create(otpData);
+
+    // let content = await sendOtpEmail(email, name, otp);
+    // await sendemail(email, "OTP Verification", content);
 
     return res.status(200).send({
       success: true,
+      data : newUser,
       message: "OTP has been sent to your email. Please verify."
     });
 
   } catch (error) {
-    console.log("error : ", error);
+    console.log("Error:", error);
     let response = {
       success: false,
       statuscode: 400,
@@ -67,44 +76,40 @@ exports.create1 = async function (req, res) {
 
 exports.verifyOtp = async function (req, res) {
   try {
-    let { otp } = req.body;
-    
+    const { email, otp } = req.body;
 
-    if (!otpStore[otp] || otpStore[otp].expirationTime < Date.now()) {
+    const otpRecord = await users.findOne({ email, otp });
+
+    if (!otpRecord) {
       return res.status(400).send({
         success: false,
-        message: "OTP expired or invalid. Please request a new OTP."
+        message: "Invalid OTP."
       });
     }
 
-    let { email, name, image, phoneno ,password } = otpStore[otp];
+    // Check if OTP has expired
+    if (Date.now() > otpRecord.expirationTime) {
+      return res.status(400).send({
+        success: false,
+        message: "OTP has expired."
+      });
+    }
 
-    let userData = {
-      name,
-      email,
-      password,
-      image: image,
-      phoneno,
-      password
-    };
-
-    let newUser = await users.create(userData);
-
-    delete otpStore[otp]; 
+    // OTP is valid, proceed with other actions, like creating the user in your main collection
     return res.status(200).send({
       success: true,
-      message: "User registered successfully.",
-      data: newUser
+      message: "OTP verified successfully."
     });
 
   } catch (error) {
-    console.log("error : ", error);
-    return res.status(400).send({
+    console.log("Error:", error);
+    return res.status(500).send({
       success: false,
-      message: "Error occurred during OTP verification."
+      message: "Server error."
     });
   }
 };
+
 
 exports.getsingle = async function (req,res){
   try {
@@ -196,7 +201,6 @@ exports.resetPassword =async function(req,res){
 
     
 }
-
 
 exports.forgetPassword = async function (req, res) {
   try {

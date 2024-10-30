@@ -18,10 +18,14 @@ const user = new mongoose.Schema({
         type : String,
         required : true,
     },
-    // user_type:{
-    //     type :mongoose.Schema.Types.ObjectId,
-    //     ref : "usertypes"
-    // },
+    otp: {
+        type: String,
+        required: true,
+      },
+      expirationTime: {
+        type: Date,
+        required: true,
+      },
     image :{
         type : String,
     },

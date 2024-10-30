@@ -1,0 +1,126 @@
+.body{
+  background-image: url(./images/tropical-palm-leaves-pattern-background-green-monstera-tree-foliage-decoration-design-plant-with-exotic-leaf-closeup.jpg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  width: 100%;
+  height: 100vh;
+  background-color: #000000;
+  /* opacity: .1; */
+  backdrop-filter: blur(7px);
+}
+.nav{
+  width: 40%;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  background-color: #ffffff;
+  backdrop-filter: blur(2px);
+  padding: 20px;
+  border-radius: 50px;
+  border: 5px double rgba(255, 255, 255, 0.678);
+}
+.nav_container{
+  padding-left: 20px;
+}
+.hov:hover{
+  border-bottom: 10px solid rgba(0, 0, 0, 0.614);
+  transition: 1s ;
+
+}
+.form_container{
+  padding: 0px 0px 0px 0px;
+  height: 100%;
+  
+  
+}
+.form_Subcontainer{
+  
+    /* width: 70%; */
+    height: 90vh;
+    background-color: rgba(74, 101, 60, 0.568);
+    padding: 80px 100px 80px 100px;
+    backdrop-filter: blur(20px);
+    border-radius: 0px 30px 30px 0px;
+    border: 1px solid rgb(0, 0, 0);
+}
+
+.inputContainer{
+  padding: 10px;
+  border-radius: 15px 15px 15px 15px;
+  background-color: rgba(255, 255, 255, 0.792);
+  text-align: center;
+  width: 300px;
+  border: 2px solid rgb(7, 7, 7);
+  color: #000000;
+  font-weight: bold;
+
+}
+input{
+  color: #fff;
+}
+.form-control{
+  background-color: rgba(255, 255, 255, 0.575);
+  width: 300px;
+  border-radius: 15px 15px 15px 15px;
+}
+.glow {
+  font-size: 50px;
+  color: #ffffff;
+  text-align: center;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+
+}
+/* From Uiverse.io by elijahgummer */ 
+button {
+  font: inherit;
+  background-color: #f0f0f0;
+  border: 0;
+  color: #242424;
+  border-radius: 0.5em;
+  font-size: 20px;
+  padding: 5px 20px;
+  font-weight: 600;
+  text-shadow: 0 0.0625em 0 #fff;
+  box-shadow: inset 0 0.0625em 0 0 #f4f4f4, 0 0.0625em 0 0 #efefef,
+    0 0.125em 0 0 #ececec, 0 0.25em 0 0 #e0e0e0, 0 0.3125em 0 0 #dedede,
+    0 0.375em 0 0 #dcdcdc, 0 0.425em 0 0 #cacaca, 0 0.425em 0.5em 0 #cecece;
+  transition: 0.15s ease;
+  cursor: pointer;
+}
+button:active {
+  translate: 0 0.225em;
+  box-shadow: inset 0 0.03em 0 0 #f4f4f4, 0 0.03em 0 0 #efefef,
+    0 0.0625em 0 0 #ececec, 0 0.125em 0 0 #e0e0e0, 0 0.125em 0 0 #dedede,
+    0 0.2em 0 0 #dcdcdc, 0 0.225em 0 0 #cacaca, 0 0.225em 0.375em 0 #cecece;
+}
+
+.text_container{
+  padding: 160px 0px 0px 40px;
+  letter-spacing: 20px;
+  font-weight: bolder;
+  color:  white;
+}
+
+.subtext_container{
+  padding: 470px 0px 0px 40px;
+  letter-spacing: 60px;
+  font-weight: bolder;
+  color:  white;
+}
+p{
+  width: 350px;
+  padding: 150px 0px 0px 40px;
+  font-size: 25px;
+  letter-spacing: 6px;
+  font-weight: lighter;
+  color: rgb(227,208,201);
+  line-height: 50px;
+}
+.wellcomecontainer{
+  padding: 100px 0px 0px 293px ;
+  letter-spacing: 28px;
+  color: rgb(69,96,49);
+  font-weight: bolder;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+}
